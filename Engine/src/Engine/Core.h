@@ -1,11 +1,11 @@
 #pragma once
 
-#ifdef EG_PLATFORM_WINDOWS
-	#ifdef ENGINE_BUILD_DLL
+#ifdef WINDOWS_PLATFORM
+	#ifdef DLL_BUILD
 		#define ENGINE_API __declspec(dllexport)
 	#else
-		#define ENGINE_API __declspec(dllexport)
-	#endif
+		#define ENGINE_API __declspec(dllimport)
+	#endif 
 #else
 	#error Hazel only support Windows.
 #endif 
