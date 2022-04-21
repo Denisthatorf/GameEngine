@@ -149,26 +149,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Engine\Renderer.cpp" />
+    <ClCompile Include="src\Engine\Rendering\IShader.cpp" />
+    <ClCompile Include="src\Engine\Rendering\Shader.cpp" />
+    <ClCompile Include="src\Engine\Rendering\PipelineBuilder.cpp" />
+    <ClCompile Include="src\Engine\Rendering\Renderer.cpp" />
     <ClCompile Include="src\Engine\Application.cpp" />
     <ClCompile Include="src\Engine\Log.cpp" />
     <ClCompile Include="src\Engine\Window.cpp" />
-    <ClCompile Include="src\Engine\Utilities.cpp" />
+    <ClCompile Include="src\Engine\Rendering\Utilities.cpp" />
     <ClCompile Include="vendor\vk-bootstrap\VkBootstrap.cpp" />
+    <ClCompile Include="src\Engine\Rendering\VulkanInitializer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Engine\Renderer.h" />
+    <ClInclude Include="src\Engine\Rendering\IShader.h" />
+    <ClInclude Include="src\Engine\Rendering\Shader.h" />
+    <ClInclude Include="src\Engine\Rendering\PipelineBuilder.h" />
+    <ClInclude Include="src\Engine\Rendering\Renderer.h" />
     <ClInclude Include="src\Engine\ServiceLocator.h" />
     <ClInclude Include="src\Engine.h" />
     <ClInclude Include="src\Engine\Application.h" />
     <ClInclude Include="src\Engine\Core.h" />
     <ClInclude Include="src\Engine\EntryPoint.h" />
     <ClInclude Include="src\Engine\Log.h" />
-    <ClInclude Include="src\Engine\VulkanTypes.h" />
+    <ClInclude Include="src\Engine\Rendering\VulkanTypes.h" />
     <ClInclude Include="src\Engine\Window.h" />
-    <ClInclude Include="src\Engine\Utilities.h" />
+    <ClInclude Include="src\Engine\Rendering\Utilities.h" />
     <ClInclude Include="vendor\vk-bootstrap\VkBootstrap.h" />
     <ClInclude Include="vendor\vk-bootstrap\VkBootstrapDispatch.h" />
+    <ClInclude Include="src\Engine\Rendering\VulkanInitializer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

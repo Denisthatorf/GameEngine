@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <memory>
+
+#include "IShader.h"
 
 #include <vulkan/vulkan.h>
 
@@ -11,6 +14,7 @@ namespace Engine
     };
 
     class Renderer {
+        friend class Shader;
     public:
         void Init(RendererSettings settings);
         void Shutdown();
@@ -23,6 +27,9 @@ namespace Engine
         void createDefaultRenderPass();
         void createFramebuffers();
         void createSyncStructures();
+        void createPipeline();
+
+        std::shared_ptr<IShader> CreateShader();
 
     private:
         uint64_t m_frameNumber{ 0 };
@@ -56,5 +63,9 @@ namespace Engine
         //SYNCHRONIZATION OBJECTS
         VkSemaphore m_presentSemaphore, m_renderSemaphore;
         VkFence m_renderFence;
+
+        //TEMPORARY RUNTIME GAME OBJECTS
+        std::shared_ptr<IShader> m_triangleShader{ nullptr };
+        std::shared_ptr<IShader> m_triangleShader2{ nullptr };
     };
 }

@@ -24,13 +24,25 @@
     <ClCompile Include="src\Engine\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Renderer.cpp">
+    <ClCompile Include="src\Engine\Rendering\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Utilities.cpp">
+    <ClCompile Include="src\Engine\Rendering\Utilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="vendor\vk-bootstrap\VkBootstrap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Rendering\VulkanInitializer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Rendering\PipelineBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Rendering\Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Rendering\IShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,19 +68,31 @@
     <ClInclude Include="src\Engine\ServiceLocator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Renderer.h">
+    <ClInclude Include="src\Engine\Rendering\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\VulkanTypes.h">
+    <ClInclude Include="src\Engine\Rendering\VulkanTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Utilities.h">
+    <ClInclude Include="src\Engine\Rendering\Utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="vendor\vk-bootstrap\VkBootstrap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="vendor\vk-bootstrap\VkBootstrapDispatch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Rendering\VulkanInitializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Rendering\PipelineBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Rendering\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Rendering\IShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

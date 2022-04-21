@@ -2,9 +2,15 @@
 
 #include "VkBootstrap.h"
 
-#include "Renderer.h"
-#include "ServiceLocator.h"
+#include "VulkanInitializer.h"
+#include "PipelineBuilder.h"
+
 #include "Utilities.h"
+#include "../Log.h"
+
+#include "../ServiceLocator.h"
+#include "Renderer.h"
+#include "Shader.h"
 
 namespace Engine {
 
@@ -18,11 +24,21 @@ namespace Engine {
 		createDefaultRenderPass();
 		createFramebuffers();
 		createSyncStructures();
+		createPipeline();
 	}
 
 	void Renderer::Shutdown()
 	{
 		vkDeviceWaitIdle(m_logicalDevice);
+
+		if (m_triangleShader) {
+			m_triangleShader.reset();
+			m_triangleShader = nullptr;
+		}
+		if (m_triangleShader2) {
+			m_triangleShader2.reset();
+			m_triangleShader2 = nullptr;
+		}
 
 		vkDestroyFence(m_logicalDevice, m_renderFence, nullptr);
 		vkDestroySemaphore(m_logicalDevice, m_presentSemaphore, nullptr);
@@ -64,7 +80,7 @@ namespace Engine {
 
 		VK_CHECK(vkBeginCommandBuffer(cmd, &beginInfo));
 
-		float flashColour = abs(sin((float)m_frameNumber / 1000.f));
+		float flashColour = abs(sin((float)m_frameNumber / 10.f));
 
 		VkClearValue clearValue{};
 		clearValue.color = { 0.f, flashColour, 150.f, 150.f };
@@ -85,6 +101,18 @@ namespace Engine {
 		vkCmdBeginRenderPass(cmd, &renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
 
 		// DRAW CALLS
+
+		if (m_triangleShader) {
+			m_triangleShader->Bind();
+		}
+
+		vkCmdDraw(cmd, 3, 1, 0, 0);
+
+		if (m_triangleShader2) {
+			m_triangleShader2->Bind();
+		}
+
+		vkCmdDraw(cmd, 3, 1, 0, 0);
 
 		vkCmdEndRenderPass(cmd);
 		VK_CHECK(vkEndCommandBuffer(cmd));
@@ -257,4 +285,14 @@ namespace Engine {
 		VK_CHECK(vkCreateSemaphore(m_logicalDevice, &semaphoreCreateInfo, nullptr, &m_renderSemaphore));
 	}
 
+	void Renderer::createPipeline() {
+		m_triangleShader = CreateShader();
+		m_triangleShader->Load("../shaders/simple_shader.vert.spv", "../shaders/simple_shader.frag.spv");
+		m_triangleShader2 = CreateShader();
+		m_triangleShader2->Load("../shaders/simple_shader2.vert.spv", "../shaders/simple_shader.frag.spv");
+	}
+
+	std::shared_ptr<IShader> Renderer::CreateShader() {
+		return std::make_shared<Shader>(this);
+	}
 }

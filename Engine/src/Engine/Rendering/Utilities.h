@@ -1,8 +1,10 @@
 #pragma once
-#include "Log.h"
 #include <string>
 
-using namespace std;
+#include "vulkan/vulkan.h"
+
+#include "../Log.h"
+
 #define VK_CHECK(x)                                                             \
     do {                                                                        \
         VkResult err = x;                                                       \
@@ -12,9 +14,12 @@ using namespace std;
         }                                                                       \
     } while(0)
 
-class VulkanUtilities {
-
-};
+namespace Engine {
+    class Utilities {
+    public:
+        static bool LoadShaderModule(const std::string& filePath, VkDevice device, VkShaderModule& outShaderModule);
+    };
+}
 
 
 

@@ -1,6 +1,6 @@
 #include "Application.h"
 #include "ServiceLocator.h"
-#include "Renderer.h"
+#include "Rendering/Renderer.h"
 
 namespace Engine 
 {
@@ -38,5 +38,6 @@ namespace Engine
 	}
 	void Application::shutDownServices()
 	{
+		ServiceLocator::shutDownServices();
 	}
 }
