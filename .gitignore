@@ -1,8 +1,7 @@
 #Directories
 .vs/
-*bin
-bin-int
 Debug
+x64
 
 #Files
 *.user

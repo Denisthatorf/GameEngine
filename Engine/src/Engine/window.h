@@ -1,26 +1,45 @@
 #pragma once
 #include <string>
+#include <unordered_map>
+#include <any>
 
+#define GLFW_INCLUDE_VULKAN
+#include "vulkan/vulkan.h"
 #include <GLFW/glfw3.h>
 
-class Window
+namespace Engine
 {
-private:
-	std::string name;
-	int width;
-	int height;
-	GLFWwindow* window;
-private:
-	void init(const std::string& name, int width, int height);
-public:
-	Window(const Window&) = delete;
-	Window& operator=(const Window&) = delete;
-	Window(const std::string& name, int width, int height);
-	~Window();
+	enum class SurfaceArgs {
+		INSTANCE,
+		ALLOCATORS,
+		OUT_SURFACE
+	};
 
-public:
-	GLFWwindow* getGLFWwindow() const { return window; }
-	bool shouldClose() const { return glfwWindowShouldClose(window); };
-};
+	class Window
+	{
+	private:
+		std::string m_name;
+		int m_width;
+		int m_height;
+		GLFWwindow* m_window;
+
+	public:
+		Window(const Window&) = delete;
+		Window& operator=(const Window&) = delete;
+		Window(const std::string& name, int width, int height);
+		~Window();
+
+	public:
+		bool Update();
+		void OpenWindow();
+
+		void RequestDrawSurface(std::unordered_map<SurfaceArgs, std::any> args);
+		void RequestDrawSurface(VkInstance instance, VkSurfaceKHR* surface);
+		
+	public:
+		GLFWwindow* getGLFWwindow() const { return m_window; }
+		VkExtent2D GetWindowExtents();
+	};
+}
 
 

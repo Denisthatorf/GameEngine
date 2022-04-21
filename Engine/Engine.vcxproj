@@ -120,8 +120,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WINDOWS_PLATFORM;DLL_BUILD;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Engine\vendor\spdlog\include;C:\VulkanSDK\Libraries\glfw-3.3.6.bin.WIN64\include;C:\VulkanSDK\1.3.204.1\Include;C:\VulkanSDK\Libraries\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)Engine\vendor\spdlog\include;C:\VulkanSDK\Libraries\glfw-3.3.6.bin.WIN64\include;C:\VulkanSDK\1.3.204.1\Include;C:\VulkanSDK\Libraries\glm;$(SolutionDir)Engine\vendor\vk-bootstrap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,17 +149,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Engine\Renderer.cpp" />
     <ClCompile Include="src\Engine\Application.cpp" />
     <ClCompile Include="src\Engine\Log.cpp" />
     <ClCompile Include="src\Engine\Window.cpp" />
+    <ClCompile Include="src\Engine\Utilities.cpp" />
+    <ClCompile Include="vendor\vk-bootstrap\VkBootstrap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Engine\Renderer.h" />
+    <ClInclude Include="src\Engine\ServiceLocator.h" />
     <ClInclude Include="src\Engine.h" />
     <ClInclude Include="src\Engine\Application.h" />
     <ClInclude Include="src\Engine\Core.h" />
     <ClInclude Include="src\Engine\EntryPoint.h" />
     <ClInclude Include="src\Engine\Log.h" />
+    <ClInclude Include="src\Engine\VulkanTypes.h" />
     <ClInclude Include="src\Engine\Window.h" />
+    <ClInclude Include="src\Engine\Utilities.h" />
+    <ClInclude Include="vendor\vk-bootstrap\VkBootstrap.h" />
+    <ClInclude Include="vendor\vk-bootstrap\VkBootstrapDispatch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
